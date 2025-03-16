@@ -1,32 +1,26 @@
-
-
 import os
 import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-
+# Configuración de la página: esta línea debe ser la primera en el script
 st.set_page_config(page_title="Mi Aplicación Streamlit")
 
 port = os.getenv('PORT', 8501)
 
-if __name__ == "__main__":
-    st.set_page_config(page_title="Mi Aplicación Streamlit")
-
-
-
+# Cargar los datos
 car_data = pd.read_csv("https://raw.githubusercontent.com/Perrito-ing/Proyecto-6/refs/heads/main/vehicles_us.csv")
-st.write(car_data.head())
+st.write(car_data.head())  # Muestra las primeras filas del CSV para ver si se carga bien
 
-hist_button = st.button('Construir histograma') # crear un botón
-plotly_button = st.button('Construir grafico de dispersión') # crear un botón
-
+# Crear los botones
+hist_button = st.button('Construir histograma')
 if hist_button:
     st.write('Botón de histograma presionado')
     st.write('Creación de un histograma para el conjunto de datos de anuncios de venta de coches')
     fig = px.histogram(car_data, x="odometer")
     st.plotly_chart(fig, use_container_width=True)
 
+plotly_button = st.button('Construir gráfico de dispersión')
 if plotly_button:
     st.write('Botón de gráfico de dispersión presionado')
     st.write('Creación de un gráfico de dispersión para el conjunto de datos de anuncios de venta de coches')
